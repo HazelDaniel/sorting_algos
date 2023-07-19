@@ -21,6 +21,7 @@ void bubble_sort(int *array, size_t size)
 				array[j - 1] = array[j];
 				array[j] = tmp;
 				swapped = 1;
+				print_array(array, size);
 			}
 		}
 		if (!swapped) /* this is used to augment the best-case time complexity */
