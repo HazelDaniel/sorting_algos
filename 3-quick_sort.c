@@ -24,16 +24,63 @@ int partition_lomuto(int *array, int low, int high)
 			tmp = array[i];
 			array[i] = array[j];
 			array[j] = tmp;
-			print_array(array, size);
 		}
 	}
 	tmp = array[i + 1];
 	array[i + 1] = array[high];
 	array[high] = tmp;
+	print_array(array, size);
 	count++;
 
 	return (i + 1);
 }
+
+/**
+ * partition_hoare - a function that partitions
+ * an array using hoare partitioning scheme
+ * @array: the input array
+ * @low: the starting index
+ * @high: the last index
+ * Return: int
+ **/
+int partition_hoare(int *array, int low, int high)
+{
+	int j, i, tmp, pivot_index;
+	static int size, count = 0;
+
+	i = low;
+	pivot_index = low;
+	j = high + 1;
+
+	if (!count)
+		size = high + 1;
+	while (i < j)
+	{
+		do {
+			j--;
+		} while (array[j] >= array[pivot_index]);
+
+		do {
+			i++;
+		} while (array[i] < array[pivot_index]);
+
+		if (i < j)
+		{
+			tmp = array[i], array[i] = array[j];
+			array[j] = tmp;
+			print_array(array, size);
+		}
+		else
+		{
+			break;
+		}
+	}
+	tmp = array[pivot_index], array[pivot_index] = array[j];
+	array[j] = tmp;
+
+	return (j);
+}
+
 /**
  * quick_sort - a function that sorts an input array
  * using the quick sort algorithm
@@ -64,5 +111,26 @@ void quick_sort_lomuto(int *array, int low, int high)
 		pivot_index = partition_lomuto(array, low, high);
 	 (quick_sort_lomuto(array, low, pivot_index - 1));
 	 (quick_sort_lomuto(array, pivot_index + 1, high));
+	}
+}
+
+/**
+ * quick_sort_hoare - a function that sorts
+ * an input array using quick sort algorithm
+ * and a hoare partitioning scheme
+ * @array: an input array
+ * @low: the first element in the array
+ * @high: the last element in the array
+ * Return: void
+ **/
+void quick_sort_hoare(int *array, int low, int high)
+{
+	int pivot_index;
+
+	if (low < high)
+	{
+		pivot_index = partition_hoare(array, low, high);
+	 (quick_sort_hoare(array, low, pivot_index - 1));
+	 (quick_sort_hoare(array, pivot_index + 1, high));
 	}
 }
