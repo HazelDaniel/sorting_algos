@@ -11,14 +11,14 @@ void bubble_sort(int *array, size_t size)
 {
 	int i = 0, j = 0, tmp, swapped = 0;
 
-	for (i = 0; (size_t)i < size - 1; i++)
+	for (i = 0; (size_t)i < size; i++)
 	{
-		for (j = size - 1; j > i; j--)
+		for (j = 0; (size_t)j < size - 1; j++)
 		{
-			if (array[j] < array[j - 1])
+			if (array[j] > array[j + 1])
 			{
-				tmp = array[j - 1];
-				array[j - 1] = array[j];
+				tmp = array[j + 1];
+				array[j + 1] = array[j];
 				array[j] = tmp;
 				swapped = 1;
 				print_array(array, size);
