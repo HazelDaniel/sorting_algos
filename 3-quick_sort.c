@@ -12,7 +12,7 @@
 int partition_lomuto(int *array, int low, int high)
 {
 	int j = low, i = low - 1, pivot = array[high], tmp;
-	static int size, count = 0;
+	static int size, count;
 
 	if (!count)
 		size = high + 1;
@@ -46,7 +46,7 @@ int partition_lomuto(int *array, int low, int high)
 int partition_hoare(int *array, int low, int high)
 {
 	int j, i, tmp, pivot_index;
-	static int size, count = 0;
+	static int size, count;
 
 	i = low;
 	pivot_index = low;

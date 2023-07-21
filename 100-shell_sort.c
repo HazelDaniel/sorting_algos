@@ -36,12 +36,33 @@ unsigned int power(unsigned int x, unsigned int y)
 {
 	unsigned int tmp = x;
 
-	while(y > 1)
+	while (y > 1)
 	{
 		x *= tmp;
 		y--;
 	}
 	return (x);
+}
+
+/**
+ * fill_ptr - a function that dynamically adds an item
+ * to a contiguous block. if the block is not already created
+ * it creates it
+ * @ptr: the address of the contiguous block
+ * @item: the item to add
+ * @size: the new size of the contiguous block
+ * Return: void
+ **/
+void fill_ptr(void **ptr, int item, int size)
+{
+	int *ptr_store;
+
+	if (!*ptr)
+		*ptr = malloc(sizeof(int));
+	else
+		*ptr = realloc(*ptr, size);
+	ptr_store = (int *)*ptr;
+	(ptr_store)[size - 1] = item;
 }
 
 /**
@@ -53,38 +74,44 @@ unsigned int power(unsigned int x, unsigned int y)
  **/
 void shell_sort(int *array, size_t size)
 {
-	int prev_k_seq, count = size, x = 0, i, tmp;
+	int interval, i, j, tmp, count = 0,
+	*items = NULL, *indices = NULL, s, new_interval;
 
 	if (size <= 1)
 		return;
-
-	prev_k_seq = (power(3, size - 1) - 1) / 2;
-	while (prev_k_seq >= count && count >= x)
-		prev_k_seq = (power(3, count - (x++)) - 1) / 2;
-
-	/* this should run logNbase3 times */
-	while (prev_k_seq >= 1)
+	for (interval = 0; (size_t)interval <= (size - 1) / 3; )
+		interval = interval * 3 + 1;
+	while (interval >= 1)
 	{
-		for (i = 0; (size_t)i < size; i++)
+		count = 0;
+		if (interval == 1)
+			new_interval = interval + 1;
+		else
+			new_interval = interval;
+		for (i = 0; (size_t)i < size && (size_t)(i + new_interval) < size; i++)
 		{
-			if ((size_t)(i + prev_k_seq) < size)
+			j = i, s = 0;
+			while ((size_t)(j) < size)
 			{
-				if (array[i + prev_k_seq] < array[i])
-				{
-					tmp = array[i];
-					array[i] = array[i + prev_k_seq];
-					array[i + prev_k_seq] = tmp;
-					print_array(array, size);
-				}
+				s++;
+				fill_ptr((void **)&indices, j, s);
+				fill_ptr((void **)&items, array[j], s);
+				j += new_interval, count++;
 			}
-			else
+			insertion_sort(items, s);
+			for (tmp = 0; tmp < s; tmp++)
+				array[indices[tmp]] = items[tmp];
+			free(items), free(indices), items = indices = 0;
+			if ((size_t)count >= size)
 			{
 				break;
 			}
 		}
-		if (prev_k_seq == 1)
-				break;
-		prev_k_seq = (power(3, count - (x++)) - 1) / 2;
+		if (interval == 1)
+			break;
+		print_array(array, size);
+		interval = ((interval - 1) / 3);
 	}
 	insertion_sort(array, size);
+	print_array(array, size);
 }
