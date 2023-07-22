@@ -17,15 +17,25 @@ typedef struct listint_s
 } listint_t;
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
+
+/* CORE ALGORITHMS */
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
-void quick_sort_lomuto(int *array, int low, int high);
-void quick_sort_hoare(int *array, int low, int high);
 void shell_sort(int *array, size_t size);
 void insertion_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
+void heap_sort(int *array, size_t size);
+
+/* SUB-ROUTINES/PROCEDURES FOR CORE ALGORITHMS */
+void quick_sort_lomuto(int *array, int low, int high);
+void quick_sort_hoare(int *array, int low, int high);
+void max_heapify(int *array, int i, size_t *heap_size, size_t size);
+void build_max_heap(int *array, size_t *heap_size, size_t size);
+int parent(int i);
+int left_child(int i);
+int right_child(int i);
 /* UTILS */
 unsigned int power(unsigned int x, unsigned int y);
 #endif/*___SORT_*/
