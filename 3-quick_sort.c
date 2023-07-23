@@ -90,6 +90,8 @@ int partition_hoare(int *array, int low, int high)
  **/
 void quick_sort(int *array, size_t size)
 {
+	if (size <= 1)
+		return;
 	(quick_sort_lomuto(array, 0, size - 1));
 }
 

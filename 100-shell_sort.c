@@ -12,6 +12,8 @@ void insertion_sort(int *array, size_t size)
 {
 	int i, j, key;
 
+	if (size <= 1)
+		return;
 	for (j = 1; (size_t)j < size; j++)
 	{
 		key = array[j];

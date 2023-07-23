@@ -100,6 +100,8 @@ void heap_sort(int *array, size_t size)
 	int i, tmp;
 	size_t heap_size = size, *heap_size_addr = &heap_size;
 
+	if (size <= 1)
+		return;
 	build_max_heap(array, heap_size_addr, size);
 	for (i = size - 1; i > 0; i--)
 	{

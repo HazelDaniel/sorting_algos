@@ -20,7 +20,7 @@ void counting_sort(int *array, size_t size)
 	 * - the INT_MIN is returned if a negative value is found
 	 *   in the array
 	 */
-	if (high == INT_MIN)
+	if (high == INT_MIN || size <= 1)
 		return;
 	counts = calloc(high + 1, sizeof(int));
 	result = calloc(size, sizeof(int));

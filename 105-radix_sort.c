@@ -170,7 +170,7 @@ void radix_sort(int *array, size_t size)
 	dig_cut = 1, i, j, base = 10, *tmp_arr;
 	rad_bin_t *bins;
 
-	if (highest == INT_MIN)
+	if (size <= 1 || highest == INT_MIN)
 		return;
 	dig_len = num_digits(highest);
 	while (dig_len)
