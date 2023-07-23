@@ -1,33 +1,6 @@
 #include "sort.h"
-#include <limits.h>
-#include <string.h>
+#include "utils.c"
 
-/**
- * find_max - a function that returns
- * the maximum item in an array
- * @array: the input array
- * @size: the size of the input array
- * Return: the maximum of the array
- * Description: this is customized for the
- * 							counting sort algorithm
- **/
-int find_max(int *array, size_t size)
-{
-	int max = INT_MIN, i;
-
-	if (!array)
-		return (max);
-
-	for (i = 0; (size_t)i < size; i++)
-	{
-		if (array[i] < 0)
-			return (INT_MIN);
-		if (array[i] > max)
-			max = array[i];
-	}
-
-	return (max);
-}
 
 /**
  * counting_sort - a function that sorts an input array

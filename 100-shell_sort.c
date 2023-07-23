@@ -1,4 +1,5 @@
 #include "sort.h"
+#include "utils.c"
 
 /**
  * insertion_sort - a function that sorts an input array
@@ -23,25 +24,6 @@ void insertion_sort(int *array, size_t size)
 			array[i + 1] = key;
 		}
 	}
-}
-
-/**
- * power - a function that returns an operation
- * x ^ y on two input values x and y
- * @x: the first input value
- * @y: the second input value
- * Return: unsigned int
- **/
-unsigned int power(unsigned int x, unsigned int y)
-{
-	unsigned int tmp = x;
-
-	while (y > 1)
-	{
-		x *= tmp;
-		y--;
-	}
-	return (x);
 }
 
 /**
