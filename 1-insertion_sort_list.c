@@ -13,12 +13,12 @@ void swap(listint_t **prev, listint_t **curr)
 
 	temp = fptr->prev;
 	if (temp)
-			temp->next = sptr;
+		temp->next = sptr;
 	sptr->prev = temp;
 
 	fptr->next = sptr->next;
 	if (sptr->next)
-			sptr->next->prev = fptr;
+		sptr->next->prev = fptr;
 
 	sptr->next = fptr;
 	fptr->prev = sptr;
