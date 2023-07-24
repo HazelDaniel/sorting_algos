@@ -8,7 +8,7 @@
  * @size: the size of the input array
  * Return: the maximum of the array
  * Description: this is customized for the
- * 							counting sort algorithm
+ * .................counting sort algorithm
  **/
 int find_max(int *array, size_t size)
 {
