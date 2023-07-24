@@ -1,6 +1,33 @@
 #include "sort.h"
 
 /**
+ * swap - a function that swaps the content
+ * of the addresses of two objects
+ * @prev: te address of the left object
+ * @curr: the address of the right object
+ * Return: void
+ **/
+void swap(listint_t **prev, listint_t **curr)
+{
+	listint_t *fptr = *prev, *sptr = *curr, *temp = NULL;
+
+	temp = fptr->prev;
+	if (temp)
+			temp->next = sptr;
+	sptr->prev = temp;
+
+	fptr->next = sptr->next;
+	if (sptr->next)
+			sptr->next->prev = fptr;
+
+	sptr->next = fptr;
+	fptr->prev = sptr;
+
+	*prev = sptr;
+	*curr = fptr;
+}
+
+/**
  * insertion_sort_list - a function that sorts a doubly-linked
  * list using insertion sort
  * @list: the address of the doubly-linked list
@@ -8,35 +35,33 @@
  **/
 void insertion_sort_list(listint_t **list)
 {
-	int key;
-	listint_t *prev, *curr, *curr_tmp, *prev_tmp, *print_prev,
-	*tmp;
+	listint_t *curr_node = NULL, *prev_node = NULL, *ptr = NULL;
 
-	if (!(*list) || !(*list)->next)
+	prev_node = *list;
+
+	if (!prev_node || !prev_node->next)
 		return;
 
-	for (curr = (*list)->next; curr; curr = curr->next)
-	{
-		prev = curr->prev;
-		key = curr->n;
+	curr_node = prev_node->next;
 
-		while (prev && prev->n > key)
+	while (curr_node)
+	{
+		ptr = curr_node;
+		while (prev_node)
 		{
-			prev_tmp = prev, curr_tmp = prev->next;
-			prev_tmp->next = curr_tmp->next;
-			curr_tmp->next = prev_tmp;
-			if (prev_tmp->prev)
-				prev_tmp->prev->next = curr_tmp;
-			if (prev_tmp->next)
-				prev_tmp->next->prev = prev_tmp;
-			curr_tmp->prev = prev_tmp->prev;
-			prev = prev_tmp->prev;
-			prev_tmp->prev = curr_tmp;
-			print_prev = prev_tmp;
-			while (print_prev)
-				tmp = print_prev, print_prev = print_prev->prev;
-			print_list(tmp);
+			if (prev_node->n > curr_node->n)
+			{
+				swap(&prev_node, &curr_node);
+				if (!prev_node->prev)
+					*list = prev_node;
+				print_list(*list);
+			}
+			else
+				break;
+			prev_node = prev_node->prev;
+			curr_node = curr_node->prev;
 		}
+		prev_node = ptr;
+		curr_node = prev_node->next;
 	}
-	*list = tmp;
 }
