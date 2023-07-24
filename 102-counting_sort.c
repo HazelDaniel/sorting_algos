@@ -28,15 +28,22 @@ void counting_sort(int *array, size_t size)
 
 	for (i = 0; (size_t)i < size; i++)
 	{
-		printf("%d, ", counts[array[i]]);
 		counts[array[i]] += 1;
 	}
 
 	for (i = 0; i <= high; i++)
 	{
-		if (i > 0)
+		if (i)
+		{
 			counts[i] += counts[i - 1];
+			printf(", %d", counts[i]);
+		}
+		else
+		{
+			printf("%d", counts[i]);
+		}
 	}
+	printf("\n");
 
 	for (j = 0; (size_t)j < size; j++)
 	{
