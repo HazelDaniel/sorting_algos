@@ -23,7 +23,8 @@ void print_list(const listint_t *list);
  * struct bin_list - a bin that holds different cards
  * each with digits representable in base(k + 1)
  *
- * @bin: the pointer to the first card in the bin
+ * @next: the pointer to the first card in the bin
+ * @value: node value
  **/
 typedef struct bin_list
 {
@@ -36,7 +37,7 @@ typedef struct bin_list
  * which contains an array that holds the range [0..k]
  * where each item in the original array holds digits with
  * values in the interval [0,k+1)
- * 
+ *
  * @bins: the dynamic list of 'bins' that holds bins
  * positioned side-by-side in the range [0..k]
  * @size: k + 1
