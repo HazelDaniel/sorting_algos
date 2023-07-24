@@ -1,5 +1,45 @@
 #include "sort.h"
 #include <limits.h>
+
+/**
+ * swap - a function that swaps the contents of
+ * the addresses of two objects
+ * @a: the first object
+ * @b: the second object
+ * Return: void
+ **/
+void swap(int *a, int *b)
+{
+	int temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+/**
+ * array_min - a function that finds the minimum
+ * in an array
+ * @array: the input array
+ * @curr: the current index in the array
+ * @size: the size of the array
+ * Return: int
+ **/
+int array_min(int *array, int curr, int size)
+{
+	int i, pos = curr, min = array[curr];
+
+	for (i = curr; i < size; i++)
+	{
+		if (array[i] < min)
+		{
+			min = array[i];
+			pos = i;
+		}
+	}
+	return (pos);
+}
+
 /**
  * selection_sort - a function that sorts an array
  * based on the selection sort algorithm
@@ -9,27 +49,15 @@
  **/
 void selection_sort(int *array, size_t size)
 {
-	int i, j, tmp, minimum, min_index;
+	size_t i;
+	int min_pos = 0;
 
-	if (size <= 1)
+	if (!array || size == 1)
 		return;
-	for (i = 0; (size_t)i < size - 1; i++)
+	for (i = 0; i < size; i++)
 	{
-		minimum = array[i];
-		for (j = i + 1; (size_t)j < size; j++)
-		{
-			if (array[j] < minimum)
-			{
-				minimum = array[j];
-				min_index = j;
-			}
-		}
-		if (minimum != array[i])
-		{
-			tmp = array[i];
-			array[i] = minimum;
-			array[min_index] = tmp;
-			print_array(array, size);
-		}
+		min_pos = array_min(array, (int)i + 1, (int)size);
+		swap(&(array[i]), &(array[min_pos]));
+		print_array(array, size);
 	}
 }

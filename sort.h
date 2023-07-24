@@ -64,7 +64,8 @@ void radix_sort(int *array, size_t size);
 /* SUB-ROUTINES/PROCEDURES FOR CORE ALGORITHMS */
 
 void quick_sort_lomuto(int *array, int low, int high);
-void quick_sort_hoare(int *array, int low, int high);
+void sort_hoare(int *array, int low, int high);
+void quick_sort_hoare(int *array, size_t size);
 void max_heapify(int *array, int i, size_t *heap_size, size_t size);
 void build_max_heap(int *array, size_t *heap_size, size_t size);
 int parent(int i);
