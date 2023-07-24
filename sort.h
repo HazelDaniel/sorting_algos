@@ -60,6 +60,7 @@ void insertion_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
 
 
 /* SUB-ROUTINES/PROCEDURES FOR CORE ALGORITHMS */
@@ -77,6 +78,7 @@ void reset_rad_bin(rad_bin_t *r_bin);
 void free_rad_bin(rad_bin_t **r_bin);
 void insert_to_rbin(rad_bin_t *r_bin, int index, int value);
 int *extract_rad_bin(rad_bin_t *r_bin);
+void merge(int *array, int low, int mid, int high);
 
 
 /* UTILS */
