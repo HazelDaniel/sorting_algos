@@ -38,7 +38,8 @@ void counting_sort(int *array, size_t size)
 		else
 			printf("%d", counts[i]);
 	}
-	printf("\n");
+	if (i)
+		printf("\n");
 
 	for (j = 0; (size_t)j < size; j++)
 	{
