@@ -39,11 +39,11 @@ void merge(int *array, int low, int mid, int high)
 	for (i = 0; i < n1; i++)
 		left[i] = array[low + i];
 	puts("Merging..."), printf("[left]: "), print_sequence(left, n1);
-	putchar('\n');
+	printf("\n");
 	for (j = 0; j < n2; j++)
 		right[j] = array[mid + j + 1];
 	printf("[right]: "), print_sequence(right, n2);
-	putchar('\n');
+	printf("\n");
 	i = 0, j = 0, k = low;
 
 	while (i < n1 && j < n2)
@@ -59,7 +59,7 @@ void merge(int *array, int low, int mid, int high)
 	while (j < n2)
 		array[k++] = right[j++];
 	printf("[done]: "), print_sequence(array + low, k - low);
-	putchar('\n');
+	printf("\n");
 	free(right), free(left);
 }
 
