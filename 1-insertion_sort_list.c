@@ -37,10 +37,10 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *curr_node = NULL, *prev_node = NULL, *ptr = NULL;
 
-	prev_node = *list;
-
-	if (!prev_node || !prev_node->next)
+	if (!list || *list || !(*list)->next)
 		return;
+
+	prev_node = *list;
 
 	curr_node = prev_node->next;
 	while (curr_node)
