@@ -15,8 +15,8 @@ int convert_card(char *name)
 
 	if (!is_letter(name[0]) && !is_letter(name[1]))
 	{
-		if (is_digit(name[0]) && is_digit(name[1]) ||
-			is_digit(name[0]) && !name[1])
+		if ((is_digit(name[0]) && is_digit(name[1])) ||
+			(is_digit(name[0]) && !name[1]))
 		{
 			if (!name[1])
 				return (name[0] - 48);
