@@ -15,7 +15,8 @@ void counting_sort(int *array, size_t size)
 	int i, j, high, *result = NULL, *counts = NULL;
 
 	high = find_max(array, size);
-	/* below is  to make sure that the property of counting sort
+	/*
+	 * below is  to make sure that the property of counting sort
 	 * algorithm holds true prior to the iteration
 	 * - the INT_MIN is returned if a negative value is found
 	 *   in the array
