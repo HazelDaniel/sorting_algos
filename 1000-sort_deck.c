@@ -129,6 +129,9 @@ void insertion_sort_deck_by_cards(deck_node_t **list)
  **/
 void sort_deck(deck_node_t **deck)
 {
+	/*
+	 * qsort(ace, king, nmamb, 0);
+	 **/
 	insertion_sort_deck_by_cards(deck);
 	insertion_sort_deck_by_types(deck);
 }
