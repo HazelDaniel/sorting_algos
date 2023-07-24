@@ -1,5 +1,6 @@
-#include "sort.h"
-#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 /**
  * swap - a function that swaps the contents of
@@ -56,11 +57,12 @@ void selection_sort(int *array, size_t size)
 		return;
 	for (i = 0; i < size; i++)
 	{
-		min_pos = array_min(array, (int)i + 1, (int)size);
+		min_pos = array_min(array, (int)i, (int)size);
 		if (min_pos != (int)i)
 		{
 			swap(&(array[i]), &(array[min_pos]));
 			print_array(array, size);
 		}
 	}
+
 }
