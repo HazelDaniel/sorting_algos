@@ -1,7 +1,5 @@
 #include "deck.h"
 
-int is_letter(char a);
-int is_digit(char a);
 
 /**
  * convert_card - a function that converts

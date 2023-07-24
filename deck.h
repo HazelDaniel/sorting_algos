@@ -37,4 +37,8 @@ typedef struct deck_node_s
 } deck_node_t;
 int convert_card(char *name);
 void sort_deck(deck_node_t **deck);
+
+/* UTILS */
+int is_letter(char a);
+int is_digit(char a);
 #endif/*___DECK_*/
