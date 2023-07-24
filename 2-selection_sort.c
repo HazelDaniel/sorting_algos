@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "sort.h"
 #include <stdlib.h>
 
 
@@ -50,7 +51,7 @@ int array_min(int *array, int curr, int size)
  **/
 void selection_sort(int *array, size_t size)
 {
-	size_t i;
+	size_t i = 0;
 	int min_pos = 0;
 
 	if (!array || size == 1)
