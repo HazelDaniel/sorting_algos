@@ -1,6 +1,4 @@
 #include "sort.h"
-#include "utils/utils-mem_utils.c"
-
 
 /**
  * print_sequence - a function that prints
@@ -37,7 +35,7 @@ void merge(int *array, int low, int mid, int high)
 	int *left, *right, i, j, k,
 
 	n1 = mid - low + 1, n2 = high - mid;
-	left = _calloc(n1, sizeof(int)), right = _calloc(n2, sizeof(int));
+	left = malloc((high + 1) * sizeof(int)), right = malloc(n2 * sizeof(int));
 	for (i = 0; i < n1; i++)
 		left[i] = array[low + i];
 	puts("Merging..."), printf("[left]: "), print_sequence(left, n1);
@@ -62,7 +60,7 @@ void merge(int *array, int low, int mid, int high)
 		array[k++] = right[j++];
 	printf("[done]: "), print_sequence(array + low, k - low);
 	printf("\n");
-	_fr_ptr((void **)&right), _fr_ptr((void **)&left);
+	free(right), free(left);
 }
 
 /**
@@ -75,7 +73,7 @@ void merge(int *array, int low, int mid, int high)
  **/
 void m_sort(int *array, int low, int high)
 {
-	int mid, n1, n2;
+	int mid, tmp, n1, n2;
 
 	if (low < high)
 	{
