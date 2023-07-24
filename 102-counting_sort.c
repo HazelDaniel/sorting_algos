@@ -34,14 +34,9 @@ void counting_sort(int *array, size_t size)
 	for (i = 0; i <= high; i++)
 	{
 		if (i)
-		{
-			counts[i] += counts[i - 1];
-			printf(", %d", counts[i]);
-		}
+			counts[i] += counts[i - 1], printf(", %d", counts[i]);
 		else
-		{
 			printf("%d", counts[i]);
-		}
 	}
 	printf("\n");
 
