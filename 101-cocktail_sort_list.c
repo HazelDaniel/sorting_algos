@@ -63,7 +63,8 @@ void cocktail_sort_list(listint_t **list)
 	listint_t *ptr, *aptr, *bptr, *cptr, *dptr;
 	size_t swapped = 0;
 
-	if (!list || !*list || !(*list)->next)
+	ptr = list ? *list : NULL;
+	if (!ptr || !ptr->next)
 		return;
 	for (ptr = *list; ptr; ptr = ptr->next)
 	{
