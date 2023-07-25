@@ -1,101 +1,50 @@
 #include "sort.h"
-#include "utils.c"
 
 /**
- * insertion_sort - a function that sorts an input array
- * based on the insertion sort algorithm
- * @array: the input array
- * @size: the size of the input array - N
+ * swap - a function that swaps the content
+ * of the addresses of two objects
+ * @a: te address of the left object
+ * @b: the address of the right object
  * Return: void
  **/
-void insertion_sort(int *array, size_t size)
+void swap(int *a, int *b)
 {
-	int i, j, key;
+	int temp;
 
-	if (size <= 1)
-		return;
-	for (j = 1; (size_t)j < size; j++)
-	{
-		key = array[j];
-		i = j - 1;
-
-		while ((int)i >= 0 && array[i] > key)
-		{
-			array[i + 1] = array[i];
-			i--;
-			array[i + 1] = key;
-		}
-	}
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /**
- * fill_ptr - a function that dynamically adds an item
- * to a contiguous block. if the block is not already created
- * it creates it
- * @ptr: the address of the contiguous block
- * @item: the item to add
- * @size: the new size of the contiguous block
- * Return: void
- **/
-void fill_ptr(void **ptr, int item, int size)
-{
-	int *ptr_store;
-
-	if (!*ptr)
-		*ptr = malloc(sizeof(int));
-	else
-		*ptr = realloc(*ptr, size);
-	ptr_store = (int *)*ptr;
-	(ptr_store)[size - 1] = item;
-}
-
-/**
- * shell_sort - a function that sorts an input array
- * based on the shell sort algorithm
+ * shell_sort - a function that sorts
+ * an array using the shell sort algorithm
+ * (Knuth sequence)
  * @array: the input array
- * @size: the size of the input array - N
+ * @size: the size of the input array
  * Return: void
  **/
 void shell_sort(int *array, size_t size)
 {
-	int interval, i, j, tmp, count = 0,
-	*items = NULL, *indices = NULL, s, new_interval;
+	size_t gap = 1, i, j;
 
-	if (size <= 1)
+	if (!array || size <= 1)
 		return;
-	for (interval = 0; (size_t)interval <= (size - 1) / 3; )
-		interval = interval * 3 + 1;
-	while (interval >= 1)
+
+	gap = (3 * gap) + 1;
+
+	while (gap)
 	{
-		count = 0;
-		if (interval == 1)
-			new_interval = interval + 1;
-		else
-			new_interval = interval;
-		for (i = 0; (size_t)i < size && (size_t)(i + new_interval) < size; i++)
+		for (i = 0; i + gap < size; i++)
 		{
-			j = i, s = 0;
-			while ((size_t)(j) < size)
+			if (array[i] > array[i + gap])
 			{
-				s++;
-				fill_ptr((void **)&indices, j, s);
-				fill_ptr((void **)&items, array[j], s);
-				j += new_interval, count++;
-			}
-			insertion_sort(items, s);
-			for (tmp = 0; tmp < s; tmp++)
-				array[indices[tmp]] = items[tmp];
-			free(items), free(indices), items = indices = 0;
-			if ((size_t)count >= size)
-			{
-				break;
+				swap(&array[i], &array[i + gap]);
+				for (j = i; j >= 0 && array[j] < array[j - 1]; j--)
+					swap(&array[j], &array[j - 1]);
 			}
 		}
-		if (interval == 1)
-			break;
 		print_array(array, size);
-		interval = ((interval - 1) / 3);
+		gap = (gap - 1) / 3;
 	}
-	insertion_sort(array, size);
-	print_array(array, size);
 }
