@@ -32,8 +32,11 @@ void shell_sort(int *array, size_t size)
 	if (!array || size <= 1)
 		return;
 
-	gap = (3 * gap) + 1;
+/* finds the highest gap value before the first iteration*/
+	while (gap < (int)size)
+		gap = (3 * gap) + 1;
 
+	gap = (gap - 1) / 3;
 	while (gap)
 	{
 		for (i = 0; i + gap < (int)size; i++)
