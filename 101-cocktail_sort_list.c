@@ -1,28 +1,6 @@
 #include "sort.h"
 
 /**
- * listlen - finds the length of a linked pist
- * @list: doubly linked list
- * Return: length of list
- */
-size_t listlen(listint_t **list)
-{
-	listint_t *ptr = NULL;
-	size_t count = 0;
-
-	if (list && *list)
-	{
-		ptr = *list;
-		while (ptr)
-		{
-			count++;
-			ptr = ptr->next;
-		}
-	}
-	return (count);
-}
-
-/**
  * front_swap - swaps adjacent nodes in
  * forward direction
  * @prev: previous node
@@ -82,12 +60,12 @@ void back_swap(listint_t **prev, listint_t **curr)
  **/
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *aptr = NULL, *bptr = NULL, *cptr = NULL, *dptr;
-	size_t len = listlen(list), i, swapped = 0;
+	listint_t *ptr, *aptr, *bptr, *cptr, *dptr;
+	size_t swapped = 0;
 
-	if (len <= 1)
+	if (!list || !*list || !(*list)->next)
 		return;
-	for (i = 0; i < len; i++)
+	for (ptr = *list; ptr; ptr = ptr->next)
 	{
 		aptr = *list, bptr = aptr->next;
 		while (aptr->next)
@@ -103,7 +81,7 @@ void cocktail_sort_list(listint_t **list)
 			aptr = aptr->next;
 			bptr = bptr->next;
 		}
-		if (!swapped)  /*this is used to augment the best-case time complexity */
+		if (!swapped)
 			break;
 		swapped = 0, cptr = aptr, dptr = cptr->prev;
 		while (dptr)
