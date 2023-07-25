@@ -81,7 +81,7 @@ void m_sort(int *array, int low, int high)
 	{
 		mid = ((high + low) >> 1);
 		n1 = mid - low + 1, n2 = high - mid;
-		if (n1 > n2 && !(n1 == 1 && n2 == 1))
+		if (n1 > n2)
 		{
 			if (mid != low)
 				mid = mid - 1;
