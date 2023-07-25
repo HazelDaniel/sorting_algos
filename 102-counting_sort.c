@@ -36,7 +36,7 @@ void *alloc_init(int nmemb, int size)
  **/
 void counting_sort(int *array, size_t size)
 {
-	int i, j, high, *result = NULL, *counts = NULL;
+	int i = 0, j = 0, high, *result = NULL, *counts = NULL;
 
 	high = find_max(array, size);
 	/*
@@ -51,18 +51,16 @@ void counting_sort(int *array, size_t size)
 	result = malloc(size * sizeof(int));
 
 	for (i = 0; (size_t)i < size; i++)
-	{
 		counts[array[i]] += 1;
-	}
 
-	for (i = 0; i <= high; i++)
+	for (j = 0; j <= high; j++)
 	{
-		if (i)
-			counts[i] += counts[i - 1], printf(", %d", counts[i]);
+		if (j)
+			counts[j] += counts[j - 1], printf(", %d", counts[j]);
 		else
-			printf("%d", counts[i]);
+			printf("%d", counts[j]);
 	}
-	if (i)
+	if (j)
 		printf("\n");
 
 	for (j = 0; (size_t)j < size; j++)
