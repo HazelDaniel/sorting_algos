@@ -22,7 +22,7 @@ void *alloc_init(int nmemb, int size)
 
 	for (i = 0; i < size; i++)
 		tmp_res[i] = 0;
-	
+
 	return (res);
 }
 
