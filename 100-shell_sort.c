@@ -45,7 +45,7 @@ void shell_sort(int *array, size_t size)
 					swap(&array[j], &array[j - gap]);
 			}
 		}
-		print_array(array, size);
 		gap = (gap - 1) / 3;
+		print_array(array, size);
 	}
 }
