@@ -45,8 +45,6 @@ void counting_sort(int *array, size_t size)
 	 * - the INT_MIN is returned if a negative value is found
 	 *   in the array
 	 */
-	if (size == 1)
-		printf("%d\n", array[0]);
 	if (high == INT_MIN || size <= 1)
 		return;
 	counts = alloc_init(high + 1, sizeof(int));
