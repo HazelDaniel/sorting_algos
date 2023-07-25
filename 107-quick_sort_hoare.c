@@ -48,6 +48,14 @@ int part_hoare(int *array, int low, int high)
 	return (j);
 }
 
+/**
+ * hoare_sort - a function that sorts an input array
+ * using quick sort and hoare sort partitioning scheme
+ * @array: the input array
+ * @low: the lowest index
+ * @high: the last index
+ * Return: void
+ **/
 void hoare_sort(int *array, int low, int high)
 {
 	int pivot_index;
