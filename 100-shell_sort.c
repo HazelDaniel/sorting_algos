@@ -31,8 +31,6 @@ void shell_sort(int *array, size_t size)
 
 	if (!array || size <= 1)
 	{
-		if (size == 1)
-			printf("%d\n", array[0]);
 		return;
 	}
 
