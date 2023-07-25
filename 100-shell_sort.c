@@ -9,11 +9,11 @@
  **/
 void swap(int *a, int *b)
 {
-	int temp;
+        int temp;
 
-	temp = *a;
-	*a = *b;
-	*b = temp;
+        temp = *a;
+        *a = *b;
+        *b = temp;
 }
 
 /**
@@ -26,34 +26,29 @@ void swap(int *a, int *b)
  **/
 void shell_sort(int *array, size_t size)
 {
-	int gap = 1, i;
-	int j;
+        int gap = 1, i;
+        int j;
 
-	if (!array || size <= 1)
-	{
-		if (size == 1)
-			printf("%d\n", array[0]);
-		return;
-	}
-
+        if (!array || size <= 1)
+                return;
 
 /* finds the highest gap value before the first iteration*/
-	while ((size_t)gap < size)
-		gap = (3 * gap) + 1;
+        while (gap < (int)size)
+                gap = (3 * gap) + 1;
 
-	gap = (gap - 1) / 3;
-	while (gap)
-	{
-		for (i = 0; (size_t)(i + gap) < size; i++)
-		{
-			if (array[i] > array[i + gap])
-			{
-				swap(&array[i], &array[i + gap]);
-				for (j = i; j >= 0 && j - gap >= 0 && array[j] < array[j - gap]; j--)
-					swap(&array[j], &array[j - gap]);
-			}
-		}
-		gap = (gap - 1) / 3;
-		print_array(array, size);
-	}
+        gap = (gap - 1) / 3;
+        while (gap)
+        {
+                for (i = 0; i + gap < (int)size; i++)
+                {
+                        if (array[i] > array[i + gap])
+                        {
+                                swap(&array[i], &array[i + gap]);
+                                for (j = i; j >= 0 && j - gap >= 0 && array[j] < array[j - gap]; j -= gap)
+                                        swap(&array[j], &array[j - gap]);
+                        }
+                }
+                gap = (gap - 1) / 3;
+                print_array(array, size);
+        }
 }
