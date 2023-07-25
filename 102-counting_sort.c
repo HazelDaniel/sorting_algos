@@ -1,6 +1,30 @@
 #include "sort.h"
 #include "utils.c"
 
+/**
+ * alloc_init - a function that does
+ * the work of malloc and initializes all it's element to zero
+ * @nmemb: the number of elements to fill
+ * @size: the size of each element in memory
+ * Return: void *
+ **/
+void *alloc_init(int nmemb, int size)
+{
+	int i;
+	void *res;
+	char *tmp_res;
+
+	res = malloc(nmemb * size);
+	if (!res)
+		return (0);
+
+	tmp_res = res;
+
+	for (i = 0; i < size; i++)
+		tmp_res[i] = 0;
+	
+	return (res);
+}
 
 /**
  * counting_sort - a function that sorts an input array
@@ -23,8 +47,8 @@ void counting_sort(int *array, size_t size)
 	 */
 	if (high == INT_MIN || size <= 1)
 		return;
-	counts = calloc(high + 1, sizeof(int));
-	result = calloc(size, sizeof(int));
+	counts = alloc_init(high + 1, sizeof(int));
+	result = malloc(size * sizeof(int));
 
 	for (i = 0; (size_t)i < size; i++)
 	{
